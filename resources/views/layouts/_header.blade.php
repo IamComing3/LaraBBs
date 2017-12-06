@@ -40,7 +40,7 @@
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();" class="hidden-xs">
                                     退出登录
                                 </a>
                                 <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: none">
