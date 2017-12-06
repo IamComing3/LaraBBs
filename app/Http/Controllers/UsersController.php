@@ -27,6 +27,9 @@ class UsersController extends Controller
             $result = $uploader->save($request->avatar, 'avatar', $user->id, 362);
             if ($result) {
                 $data['avatar'] = $result['path'];
+                $tmp = explode('/', $user->avatar);
+                $tmp = implode('/', array_splice($tmp, 3));
+                unlink($tmp);
             }
         }
 
