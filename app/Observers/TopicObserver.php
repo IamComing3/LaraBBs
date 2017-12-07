@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Topic;
-use App\Handlers\SlugTranslateHandler;
+use App\Jobs\TranslateSlug;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -20,7 +20,8 @@ class TopicObserver
 
         // 如果 slug 字段为内容，则使用翻译器
         if (! $topic->slug) {
-            $topic->slug = app(SlugTranslateHandler::class)->translate($topic->title);
+            // 推送任务到队列
+            dispatch(new TranslateSlug($topic));
         }
     }
 }
