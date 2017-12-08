@@ -13,6 +13,6 @@ class Reply extends Model
 
     public function user()
     {
-        return $this->belognTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }
