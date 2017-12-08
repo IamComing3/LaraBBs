@@ -17,7 +17,13 @@ class TopicObserver
 
         // 生成话题摘录
         $topic->excerpt = make_excerpt($topic->body);
+    }
 
+    /*
+    * 确保分发任务时， $topic 实例已存在于数据库
+    */
+    public function saved(Topic $topic)
+    {
         // 如果 slug 字段为内容，则使用翻译器
         if (! $topic->slug) {
             // 推送任务到队列
