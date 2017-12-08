@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Models\Reply;
 
-class TopicReplied extends Notification
+class TopicReplied extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -34,14 +34,14 @@ class TopicReplied extends Notification
     public function via($notifiable)
     {
         // 通知频道
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Get the database representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return \Illuminate\Notifications\Messages\DatabaseMessage
      */
     public function toDatabase($notifiable)
     {
@@ -61,6 +61,21 @@ class TopicReplied extends Notification
     }
 
     /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable)
+    {
+        $url = $this->reply->topic->link(['#reply'. $this->reply->id]);
+
+        return (new MailMessage)
+                    ->line('你的话题有新回复！')
+                    ->action('点击查看', $url);
+    }
+
+    /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
@@ -68,8 +83,6 @@ class TopicReplied extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            //
-        ];
+
     }
 }
