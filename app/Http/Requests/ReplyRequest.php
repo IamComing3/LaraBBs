@@ -10,24 +10,13 @@ class ReplyRequest extends Request
         {
             // CREATE
             case 'POST':
-            {
-                return [
-                    // CREATE ROLES
-                ];
-            }
-            // UPDATE
-            case 'PUT':
-            case 'PATCH':
-            {
-                return [
-                    // UPDATE ROLES
-                ];
-            }
-            case 'GET':
             case 'DELETE':
             default:
             {
-                return [];
+                return [
+                    'content' => 'required|min:2',
+                    'topic_id' => 'required'
+                ];
             };
         }
     }
@@ -35,7 +24,9 @@ class ReplyRequest extends Request
     public function messages()
     {
         return [
-            // Validation messages
+            'content.required' => '回复内容不能为空哦~',
+            'content.min' => '回复内容至少两个字符哦~',
+            'topic_id'  => '服务器错误'
         ];
     }
 }
