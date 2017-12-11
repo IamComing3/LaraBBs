@@ -41,11 +41,19 @@ class UsersTableSeeder extends Seeder
         // 插入到数据库中
         User::insert($user_array);
 
-        // 单独处理第一个用户的数据
+        // 单独处理用户的数据
         $user = User::find(1);
         $user->name = 'Kevin';
         $user->email = '7360@qq.com';
         $user->password = bcrypt('111');
+        $user->assignRole('Founder');
+        $user->save();
+
+        $user = User::find(2);
+        $user->name = 'Jelly';
+        $user->email = '73607@qq.com';
+        $user->password = bcrypt('111');
+        $user->assignRole('Maintainer');
         $user->save();
     }
 }
