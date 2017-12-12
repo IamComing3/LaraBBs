@@ -61,12 +61,15 @@ return [
     'edit_fields' => [
         'name' => [
             'title' => '用户名',
+            'min'   => 2,
+            'max'   => 10
         ],
         'email' => [
             'title' => '邮箱',
         ],
         'password' => [
             'title' => '密码',
+            'required' => true,
 
             // 表单使用 input 类型 password
             'type' => 'password',
