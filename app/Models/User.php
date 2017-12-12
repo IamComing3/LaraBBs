@@ -9,6 +9,7 @@ use Auth;
 
 class User extends Authenticatable
 {
+    use Traits\ActiveUserHelper;
     use HasRoles;
 
     // 定制通知方式，未读通知数自增
