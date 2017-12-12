@@ -1419,7 +1419,7 @@ textarea {
 }
 
 a {
-  color: #3097D1;
+  color: #797878;
   text-decoration: none;
 }
 
@@ -9006,9 +9006,12 @@ body {
   margin-bottom: 10px;
 }
 
-.sidebar .active-users a.media {
+.sidebar .active-users a {
   color: #797878;
-  line-height: 46px;
-  font-size: 0.9em;
 }
 
+.sidebar .active-users a.media {
+  color: #797878;
+  line-height: 26px;
+  font-size: 0.9em;
+}
