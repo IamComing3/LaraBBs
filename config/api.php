@@ -230,4 +230,22 @@ return [
 
     ],
 
+    /*
+    | -------------------------------------------------
+    | 接口频率限制
+    | -------------------------------------------------
+    |
+    */
+    'rate_limit' => [
+        // 访问频率限制，次数/分钟
+        'access' => [
+            'expires' => env('API_ACCESS_EXPIRES', 1),
+            'limit' => env('API_ACCESS_LIMIT', 60),
+        ],
+        // 登录相关，次数/分钟
+        'sign' => [
+            'expires' => env('API_SIGN_EXPIRES', 1),
+            'limit' => env('API_SIGN_LIMIT', 10),
+        ]
+    ],
 ];
