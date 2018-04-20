@@ -11,6 +11,8 @@ class UsersController extends Controller
 {
     /**
      * User register by verification and phone
+     * @param UserRequest $request
+     * @return $this|void
      */
     public function store(UserRequest $request)
     {
